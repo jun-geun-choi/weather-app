@@ -24,3 +24,31 @@ a {
     background: black;
   }
 }
+/* ===== Responsive Layout Container ===== */
+.layout-container {
+  margin: 0 auto;
+  padding: 20px;
+  min-width: 800px; /* 800px 이하에서는 줄어들지 않도록 고정 */
+}
+
+/* 1280px 이상: 가운데 + 고정폭 */
+@media (min-width: 1280px) {
+  .layout-container {
+    width: 1280px;
+  }
+}
+
+/* 800px ~ 1279px: 전체 가로 폭 사용 */
+@media (max-width: 1279px) and (min-width: 800px) {
+  .layout-container {
+    width: 100%;
+  }
+}
+
+/* 800px 이하: 줄어들지 않도록 + 스크롤 허용 */
+@media (max-width: 799px) {
+  body {
+    overflow-x: auto;
+  }
+}
+
