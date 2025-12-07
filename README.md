@@ -11,7 +11,7 @@ npm install
 3. 환경 변수 설정
 - 프로젝트 루트 위치에 .env.local 파일을 생성하고 아래 내용 추가!
 ```
-OPENWEATHER_API_KEY=56b7ac48c8ec5f4b083290f06f2f0f29
+OPENWEATHER_API_KEY=발급받은 API키를 입력합니다.
 ```
 
 ## 프로젝트 실행
