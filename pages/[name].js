@@ -1,8 +1,12 @@
+// GraphQL 요청을 하고, 결과 상태를 loading, error, data로 관리
 import { gql, useQuery } from "@apollo/client";
+//URL의 값을 읽고, 페이지 이동 할 때 활용.
 import { useRouter } from "next/router";
 import { useState } from "react";
+//groupForecastByDate 코드의 함수를 사용하기 위해
 import { groupForecastByDate } from "../utils/groupForecast";
 
+// 요청할 것들을 미리 정의
 const GET_WEATHER = gql`
   query ($city: String!) {
     currentWeather(city: $city) {
@@ -18,8 +22,10 @@ const GET_WEATHER = gql`
 `;
 
 export default function CityWeather() {
+  //URL의 값을 읽어온다.
   const router = useRouter();
-  const city = router.query.name; // URL 파라미터 ex) Seoul, Tokyo, Paris, London
+  const city = router.query.name; 
+  // 토글 관리
   const [openDate, setOpenDate] = useState(null);
 
   // GraphQL 요청
@@ -32,8 +38,10 @@ export default function CityWeather() {
   if (loading) return <p>Fetching weather...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
+  //요청된 데이터 중, 5일 예보 데이터를 가공.
   const grouped = groupForecastByDate(data.forecast5days);
 
+  // 이후 화면에 출력
   return (
     <div style={{ padding: "20px" }}>
       <h1>Weather Information for {city}</h1>
